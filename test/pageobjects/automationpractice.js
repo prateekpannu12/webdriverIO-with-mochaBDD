@@ -7,8 +7,11 @@ class automationpractice extends Page  {
   
   get WomenMenu()			{ return $('.sf-with-ul'); }
   get SummerDressesLink()	{ return $('.submenu-container').$('a*=Summer'); }
-  get QuickViewButton()		{ return $('.quick-view'); }
   get CatName()				{ return $('.cat-name'); }
+  
+  get DressImg()			{ return $('.last-line .product-container .left-block .product-image-container .product_img_link .img-responsive'); }
+  get QuickViewButton()		{ return $('.quick-view-mobile'); }
+  get QuickViewClose()		{ return $('.fancybox-close'); }
   
   /**
    * define or overwrite page methods
@@ -28,8 +31,25 @@ class automationpractice extends Page  {
 	this.SummerDressesLink.click();
   }
   
+  selectDressImg () {
+	this.DressImg.scrollIntoView();
+	this.DressImg.moveTo();
+  }
+  
+  isDressImg () {
+    this.DressImg.waitForDisplayed(1000);
+    return this.DressImg.isDisplayed();
+  }
+  
   selectQuickView () {
+	this.QuickViewButton.scrollIntoView();
+	this.QuickViewButton.moveTo();
     this.QuickViewButton.click();
+  }
+  
+  isQuickView () {
+    this.QuickViewClose.waitForDisplayed(1000);
+    return this.QuickViewClose.isDisplayed();
   }
   
   h2txt () {
