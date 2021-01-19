@@ -28,3 +28,18 @@ describe('Navigating to product', function() {
 	assert.equal(automationpractice.isQuickView(), true);
   });
 });
+
+describe('Add to cart and continue', function() {
+
+  it('Select "S" size from the drop down and click on "Add to Cart" button', function () {
+	automationpractice.switchtoQuickViewFrame();
+	automationpractice.selectDropDownS();
+	automationpractice.selectAddToCart();
+	assert.equal(automationpractice.AddToCartSuccessTxt(), "Product successfully added to your shopping cart");
+  });
+  
+  it('should Click on "Continue shopping" button', function () {
+	automationpractice.selectContinueShopping();
+  });
+
+});

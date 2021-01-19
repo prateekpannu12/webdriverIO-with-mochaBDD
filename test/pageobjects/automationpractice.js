@@ -13,6 +13,14 @@ class automationpractice extends Page  {
   get QuickViewButton()		{ return $('.quick-view-mobile'); }
   get QuickViewClose()		{ return $('.fancybox-close'); }
   
+  get QuickViewFrame()		{ return $('.fancybox-iframe'); }
+  get DropDownS()			{ return $('#group_1').$('option*=S'); }
+  get AddToCart()			{ return $('span=Add to cart'); }
+  get AddToCartSuccess()	{ return $('h2*=added'); }
+  
+  get ContinueShopping()	{ return $('.continue'); }
+  get ShoppingCartLink()	{ return $('.shopping_cart a'); }
+  
   /**
    * define or overwrite page methods
    */
@@ -56,6 +64,31 @@ class automationpractice extends Page  {
 	return this.CatName.getText();
   }
   
+  switchtoQuickViewFrame() {
+	this.QuickViewFrame.waitForDisplayed(1000);
+    browser.switchToFrame(this.QuickViewFrame);
+  }
+  
+  selectDropDownS () {
+	this.DropDownS.click();
+  }
+  
+  selectAddToCart () {
+	this.AddToCart.click();
+  }
+  
+  selectShoppingCart () {
+	this.ShoppingCartLink.moveTo();
+  }
+  
+  selectContinueShopping () {
+	this.ContinueShopping.click();
+  }
+  
+  AddToCartSuccessTxt () {
+	this.AddToCartSuccess.waitForDisplayed(1000);
+	return this.AddToCartSuccess.getText();
+  }
 }
 
 export default new automationpractice();
