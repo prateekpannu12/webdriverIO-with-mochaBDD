@@ -38,7 +38,7 @@ describe('Navigating to checkout', function() {
 
 describe('Should Create User Account', function() {	
 	it('Should Enter email for signup and select gender', function() {
-		automationpracticeSignUp.inputSn_EmailField();
+		automationpracticeSignUp.inputSn_EmailField('automationpractice00@automationpractice.com');
 		automationpracticeSignUp.selectSn_Submit();
 		automationpracticeSignUp.selectSn_Gender();
 	});

@@ -26,8 +26,8 @@ class automationpracticeSignUp extends Page  {
    * define or overwrite page methods
    */
 
-  inputSn_EmailField () {
-	this.Sn_EmailField.setValue('automationpractice00@automationpractice.com');
+  inputSn_EmailField (newemailtoregister) {
+	this.Sn_EmailField.setValue(newemailtoregister);
   }
   selectSn_Submit () {
 	this.Sn_Submit.click();
