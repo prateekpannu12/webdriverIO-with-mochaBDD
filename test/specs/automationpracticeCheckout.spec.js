@@ -1,5 +1,6 @@
-import automationpracticeCh	from '../pageobjects/automationpracticeCh';
-import assert       			from 'assert';
+import automationpracticeCh			from '../pageobjects/automationpracticeCh';
+import automationpracticeSignUp		from '../pageobjects/automationpracticeSignUp';
+import assert       				from 'assert';
 
 /*
 	This is a BDD test using Mocha JavaScript framework
@@ -35,7 +36,7 @@ describe('Navigating to checkout', function() {
 		assert.equal(automationpracticeCh.isStepTwoCurrent(), true);
 	});
 	
-	it('Should Should Sign-in User', function() {
+	it('Should Sign-in User', function() {
 		automationpracticeCh.inputEmailField();
 		automationpracticeCh.inputPasswordField();
 		automationpracticeCh.selectLogin();
