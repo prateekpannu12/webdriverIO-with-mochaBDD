@@ -1,4 +1,4 @@
-### WebdriverIO-v6 boilerplate code with Mocha BDD
+### WebdriverIO-v6 automationpractice.com code with Mocha BDD
 
 This repository contains a collection of sample webdriverIO (v6x) projects and libraries that demonstrate how to use the tool and develop automation script using the Mocha BDD framework. It uses the `chromedriver` NPM package that wraps the ChromeDriver for you. This service does not require a Selenium server, but uses ChromeDriver to communicate with the browser directly.
 
