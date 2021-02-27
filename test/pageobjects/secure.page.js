@@ -1,4 +1,4 @@
-import Page from './page';
+const Page = require('./page');
 
 /**
  * sub page containing specific selectors and methods for a specific page
@@ -10,4 +10,4 @@ class SecurePage extends Page {
     get flashAlert () { return $('#flash') }
 }
 
-export default new SecurePage();
+module.exports = new SecurePage();

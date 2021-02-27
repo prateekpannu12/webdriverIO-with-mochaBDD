@@ -1,4 +1,4 @@
-import Page from './page';
+const Page = require('./page');
 
 class automationpractice extends Page  {
   /**
@@ -7,7 +7,7 @@ class automationpractice extends Page  {
   
   get WomenMenu()			{ return $('.sf-with-ul'); }
   get SummerDressesLink()	{ return $('.submenu-container').$('a*=Summer'); }
-  get CatName()				{ return $('.cat-name'); }
+  get h2txt()				{ return $('.cat-name'); }
   
   get DressImg()			{ return $('.last-line .product-container .left-block .product-image-container .product_img_link .img-responsive'); }
   get QuickViewButton()		{ return $('.quick-view-mobile'); }
@@ -26,7 +26,7 @@ class automationpractice extends Page  {
    */
 
   open () {
-      super.open('http://automationpractice.com/')       //provide your additional URL if any. this will append to the baseUrl to form complete URL
+      super.open('index.php')       //provide your additional URL if any. this will append to the baseUrl to form complete URL
       browser.pause(10000);
   }
   
@@ -53,15 +53,6 @@ class automationpractice extends Page  {
 	this.QuickViewButton.scrollIntoView();
 	this.QuickViewButton.moveTo();
     this.QuickViewButton.click();
-  }
-  
-  isQuickView () {
-    this.QuickViewClose.waitForDisplayed(1000);
-    return this.QuickViewClose.isDisplayed();
-  }
-  
-  h2txt () {
-	return this.CatName.getText();
   }
   
   switchtoQuickViewFrame() {
@@ -91,4 +82,4 @@ class automationpractice extends Page  {
   }
 }
 
-export default new automationpractice();
+module.exports = new automationpractice();

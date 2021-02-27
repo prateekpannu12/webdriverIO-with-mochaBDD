@@ -29,6 +29,8 @@ Option 1: `npm run test-local`. You can also run in SauceLabs and BrowserStack u
 Option 2: `grunt webdriver:test-local`.  This executes all spec files in the [`./test/specs/*.js`] directory.
 The default option for Grunt run is `webdriver:test-local`. But you can use `webdriver:test-sauce` or `test-browserstack` based on your requirements.
 
+Option 3: `npx wdio run ./wdio.conf.js`
+
 To execute tests on `mobile device` use : `npm run test-mobile`.
 
 💡 Before running mobile tests, perform the requisite Appium setup. For hassle free `one click Appium setup on OSX` refer [appium-setup-made-easy-OSX](https://github.com/amiya-pattnaik/appium-setup-made-easy-OSX) or refer [Appium Docs](http://appium.io/getting-started.html?lang=en)

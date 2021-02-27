@@ -1,4 +1,4 @@
-import Page from './page';
+const Page = require('./page');
 
 class automationpracticeCh extends Page  {
   /**
@@ -128,4 +128,4 @@ class automationpracticeCh extends Page  {
   }
 }
 
-export default new automationpracticeCh();
+module.export = new automationpracticeCh();
