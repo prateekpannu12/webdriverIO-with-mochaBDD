@@ -35,17 +35,12 @@ class automationpracticeCh extends Page  {
    */
 
   open () {
-      super.open('http://automationpractice.com/index.php?id_product=6&controller=product')       //provide your additional URL if any. this will append to the baseUrl to form complete URL
+      super.open('index.php?id_product=6&controller=product')       //provide your additional URL if any. this will append to the baseUrl to form complete URL
       browser.pause(1000);
   }
   
   selectAddToCart () {
 	this.AddToCart.click();
-  }
-  
-  AddToCartSuccessTxt () {
-	this.AddToCartSuccess.waitForDisplayed(1000);
-	return this.AddToCartSuccess.getText();
   }
   
   selectShoppingCart () {
@@ -61,10 +56,6 @@ class automationpracticeCh extends Page  {
   
   selectQvClose () {
 	this.QvClose.click();
-  }
-  
-  isQvClose () {
-	return this.QvClose.isFocused();
   }
   
   selectTermsCheckBox() {
