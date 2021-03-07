@@ -1,4 +1,4 @@
-import Page from './page';
+const Page = require('./page');
 
 class automationpracticeSignUp extends Page  {
   /**
@@ -19,6 +19,7 @@ class automationpracticeSignUp extends Page  {
   get Sn_State()			{return $('#id_state').$('[value="1"]'); }
   get Sn_Postal()			{return $('#postcode'); }
   get Sn_Phone()			{return $('#phone_mobile'); }
+  get Sn_Alert()			{return $('.alert-danger').$('li:last-child'); }
   get Sn_SubmitAc()			{return $('#submitAccount'); }
 
   
@@ -67,12 +68,12 @@ class automationpracticeSignUp extends Page  {
 	this.Sn_State.click();
   }
   
-  inputSn_Postal () {
-	this.Sn_Postal.setValue('00000');
+  inputSn_Postal (postal) {
+	this.Sn_Postal.setValue(postal);
   }
   
-  inputSn_Phone () {
-	this.Sn_Phone.setValue('000000000');
+  inputSn_Phone (phone) {
+	this.Sn_Phone.setValue(phone);
   }
   
   selectSubmitAc () {
@@ -81,4 +82,4 @@ class automationpracticeSignUp extends Page  {
 
 };
 
-export default new automationpracticeSignUp();
+module.exports = new automationpracticeSignUp();

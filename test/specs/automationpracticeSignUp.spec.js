@@ -1,20 +1,26 @@
-import automationpracticeCh		from '../pageobjects/automationpracticeCh';
-import automationpracticeSignUp	from '../pageobjects/automationpracticeSignUp';
-import assert       			from 'assert';
+const automationpracticeCh = require('../pageobjects/automationpracticeCh');
+const automationpracticeSignUp = require('../pageobjects/automationpracticeSignUp');
+const assert = require('assert');
 
 /*
 	This is a BDD test using Mocha JavaScript framework
 */
+
+let inputs = [
+    { 'postal' : '0000', 'phone' : '000000000', 'result' : "Postal code you've entered is invalid"},
+	{ 'postal' : '000000', 'phone' : '00000000000', 'result' : "Postal code you've entered is invalid"}
+]
+
 describe('Navigating to desired state', function() {
   
 	it('Should open to desired url', function () {
 		automationpracticeCh.open();
-		assert.equal(browser.getTitle(), 'Printed Summer Dress - My Store');
+		expect(browser).toHaveTitle('Printed Summer Dress - My Store');
 	});
   
 	it('Should add product to cart', function () {
 		automationpracticeCh.selectAddToCart();
-		assert.equal(automationpracticeCh.AddToCartSuccessTxt(), "Product successfully added to your shopping cart");
+		expect(automationpracticeCh.AddToCartSuccess).toHaveTextContaining('Product successfully added to your shopping cart');
 	});
 	
 	it('Should go back to product', function () {
@@ -27,18 +33,18 @@ describe('Navigating to checkout', function() {
 	it('Should Hover over to "Cart" section and click "Check Out" button', function (){
 		automationpracticeCh.selectShoppingCart();
 		automationpracticeCh.selectCartOrder();
-		assert.equal(browser.getTitle(), 'Order - My Store');
+		expect(browser).toHaveTitle('Order - My Store');
 	});
 	
 	it('Should Click Proceed to checkout button', function() {
 		automationpracticeCh.selectProceedCheckOut();
-		assert.equal(automationpracticeCh.isStepTwoCurrent(), true);
+		expect(automationpracticeCh.StepTwoCurrent).toBeDisplayed();
 	});
 });
 
 describe('Should Create User Account', function() {	
 	it('Should Enter email for signup and select gender', function() {
-		automationpracticeSignUp.inputSn_EmailField('automationpractice00@automationpractice.com');
+		automationpracticeSignUp.inputSn_EmailField('automationpractice0@automationpractice.com');
 		automationpracticeSignUp.selectSn_Submit();
 		automationpracticeSignUp.selectSn_Gender();
 	});
@@ -55,17 +61,25 @@ describe('Should Create User Account', function() {
 		automationpracticeSignUp.selectSn_Years();
 	});
 	
-	it('Should Enter Address, City, State, Postal and Phone', function() {
+	it('Should Enter Address, City, and State', function() {
 		automationpracticeSignUp.inputSn_Address();
 		automationpracticeSignUp.inputSn_City();
 		automationpracticeSignUp.selectSn_State();
-		automationpracticeSignUp.inputSn_Postal();
-		automationpracticeSignUp.inputSn_Phone();
 	});
 	
-	it('Should Submit account for registration', function() {
-		automationpracticeSignUp.selectSubmitAc();
-		assert.equal(automationpracticeCh.isStepThreeCurrent(), true);
+	inputs.forEach(({postal, phone, result }) => {
+		it(`Should Enter '${ postal}' , '${ phone }' and Submit to validate '${ result}'`, function() {
+			automationpracticeSignUp.inputSn_Postal(postal);
+			automationpracticeSignUp.inputSn_Phone(phone);
+			automationpracticeSignUp.selectSubmitAc();
+			expect(automationpracticeSignUp.Sn_Alert).toHaveTextContaining(result);
+		});
+		
+		it('Should confirm webpage is on step three', function() {
+			expect(automationpracticeSignUp.StepThreeCurrent).toBeDisplayed();
+		});
 	});
+	
+
 });
 	
