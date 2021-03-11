@@ -75,9 +75,9 @@ describe('Should Create User Account', function() {
 			expect(automationpracticeSignUp.Sn_Alert).toHaveTextContaining(result);
 		});
 		
-		it('Should confirm webpage is on step three', function() {
+/* 		it('Should confirm webpage is on step three', function() {
 			expect(automationpracticeSignUp.StepThreeCurrent).toBeDisplayed();
-		});
+		}); */
 	});
 	
 
