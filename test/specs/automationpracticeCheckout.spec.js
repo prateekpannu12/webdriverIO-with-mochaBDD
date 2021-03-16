@@ -9,18 +9,17 @@ describe('Navigating to desired state', function() {
   
 	it('Should open to desired url', function () {
 		automationpracticeCh.open();
-		expect(browser).toHaveTitle('Printed Summer Dress - My Store');
+		assert.equal(browser.getTitle(), 'Printed Summer Dress - My Store');
 	});
   
 	it('Should add product to cart', function () {
 		automationpracticeCh.selectAddToCart();
-		expect(automationpracticech.AddToCartSuccess).toHaveTextContaining(
-            'Product successfully added to your shopping cart ');
+		assert.equal(automationpracticeCh.AddToCartSuccessTxt(), "Product successfully added to your shopping cart");
 	});
 	
 	it('Should go back to product', function () {
 		automationpracticeCh.selectQvClose();
-		expect(automationpracticeCh.ShoppingCartLink).toBeDisplayed();
+		assert.equal(automationpracticeCh.isQvClose(), false);
 	});
 });
 
