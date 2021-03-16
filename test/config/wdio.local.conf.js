@@ -6,7 +6,7 @@ exports.config = {
       services: ['selenium-standalone'],
       capabilities: [
           {
-            maxInstances: 1,
+            maxInstances: 5,
             browserName: 'chrome',
             'goog:chromeOptions': {
                 //headless: true

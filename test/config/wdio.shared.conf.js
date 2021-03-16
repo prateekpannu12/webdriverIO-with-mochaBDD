@@ -1,6 +1,5 @@
 const path = require('path')
-const debug = true
-const defaultTimeoutInterval = 90000
+
 exports.config = {
     //
     // ====================
@@ -20,7 +19,7 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './test/specs/automationpractice.spec.js'
+        './test/specs/**/*.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -42,8 +41,7 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: debug ? 1 : 1,
-	execArgv: debug ? ['--inspect'] : [],
+    maxInstances: 15,
     //
     // ===================
     // Test Configurations
@@ -97,7 +95,7 @@ exports.config = {
     framework: 'mocha',
     mochaOpts: {
       ui: 'bdd',
-      timeout: debug ? (24 * 60 * 60 * 1000) : defaultTimeoutInterval,
+      timeout: 90000,
       compilers: ['js:@babel/register'],
     },
     //

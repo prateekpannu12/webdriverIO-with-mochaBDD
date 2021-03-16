@@ -1,4 +1,4 @@
-import automationpractice   from '../pageobjects/automationpractice.page';
+import automationpractice   from '../pageobjects/automationpractice';
 import assert       		from 'assert';
 
 /*
@@ -8,7 +8,6 @@ import assert       		from 'assert';
 describe('Navigating to product', function() {
   it('Should open desired url', function () {
     automationpractice.open();
-	browser.debug();
     assert.equal(browser.getTitle(), 'My Store');
   });
 
