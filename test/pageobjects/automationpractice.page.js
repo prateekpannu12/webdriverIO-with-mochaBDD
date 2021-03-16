@@ -26,7 +26,7 @@ class automationpractice extends Page  {
    */
 
   open () {
-      super.open('http://automationpractice.com/')       //provide your additional URL if any. this will append to the baseUrl to form complete URL
+      super.open('http://automationpractice.com/index.php')       //provide your additional URL if any. this will append to the baseUrl to form complete URL
       browser.pause(10000);
   }
   

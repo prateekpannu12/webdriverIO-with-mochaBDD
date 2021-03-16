@@ -7,8 +7,8 @@ import assert       		from 'assert';
 
 describe('Navigating to product', function() {
   it('Should open desired url', function () {
-    browser.debug();
-	automationpractice.open();
+    automationpractice.open();
+	browser.debug();
     assert.equal(browser.getTitle(), 'My Store');
   });
 

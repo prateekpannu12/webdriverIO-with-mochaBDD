@@ -1,3 +1,6 @@
+const path = require('path')
+const debug = true
+const defaultTimeoutInterval = 90000
 exports.config = {
     //
     // ====================
@@ -17,7 +20,7 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './../specs/automationpractice.spec.js'
+        './test/specs/automationpractice.spec.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -39,26 +42,8 @@ exports.config = {
     // and 30 processes will get spawned. The property handles how many capabilities
     // from the same test should run tests.
     //
-    maxInstances: 10,
-    //
-    // If you have trouble getting all important capabilities together, check out the
-    // Sauce Labs platform configurator - a great tool to configure your capabilities:
-    // https://docs.saucelabs.com/reference/platforms-configurator
-    //
-    capabilities: [{
-    
-        // maxInstances can get overwritten per capability. So if you have an in-house Selenium
-        // grid with only 5 firefox instances available you can make sure that not more than
-        // 5 instances get started at a time.
-        maxInstances: 5,
-        //
-        browserName: 'chrome',
-        acceptInsecureCerts: true
-        // If outputDir is provided WebdriverIO can capture driver session logs
-        // it is possible to configure which logTypes to include/exclude.
-        // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
-        // excludeDriverLogs: ['bugreport', 'server'],
-    }],
+    maxInstances: debug ? 1 : 1,
+	execArgv: debug ? ['--inspect'] : [],
     //
     // ===================
     // Test Configurations
@@ -66,14 +51,15 @@ exports.config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    logLevel: 'info',
+    logLevel: 'trace',
+    outputDir: path.resolve(__dirname, '../../logs'),
     //
     // Set specific log levels per logger
     // loggers:
     // - webdriver, webdriverio
     // - @wdio/applitools-service, @wdio/browserstack-service, @wdio/devtools-service, @wdio/sauce-service
     // - @wdio/mocha-framework, @wdio/jasmine-framework
-    // - @wdio/local-runner
+    // - @wdio/local-runner, @wdio/lambda-runner
     // - @wdio/sumologic-reporter
     // - @wdio/cli, @wdio/config, @wdio/sync, @wdio/utils
     // Level of logging verbosity: trace | debug | info | warn | error | silent
@@ -90,24 +76,18 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'http://automationpractice.com/',
+    baseUrl: 'http://the-internet.herokuapp.com',
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
     //
     // Default timeout in milliseconds for request
     // if browser driver or grid doesn't send response
-    connectionRetryTimeout: 120000,
+    connectionRetryTimeout: 90000,
     //
     // Default request retries count
     connectionRetryCount: 3,
     //
-    // Test runner services
-    // Services take over a specific job you don't want to take care of. They enhance
-    // your test setup with almost no effort. Unlike plugins, they don't add new
-    // commands. Instead, they hook themselves up into the test process.
-    services: ['chromedriver'],
-    
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: https://webdriver.io/docs/frameworks.html
@@ -115,12 +95,14 @@ exports.config = {
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
     framework: 'mocha',
+    mochaOpts: {
+      ui: 'bdd',
+      timeout: debug ? (24 * 60 * 60 * 1000) : defaultTimeoutInterval,
+      compilers: ['js:@babel/register'],
+    },
     //
     // The number of times to retry the entire specfile when it fails as a whole
     // specFileRetries: 1,
-    //
-    // Delay in seconds between the spec file retry attempts
-    // specFileRetriesDelay: 0,
     //
     // Whether or not retried specfiles should be retried immediately or deferred to the end of the queue
     // specFileRetriesDeferred: false,
@@ -128,19 +110,28 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter.html
-    reporters: ['spec'],
+    reporters: [
+      'spec',
 
+      ['allure', {
+          outputDir: './test/reports/allure-results',
+          disableWebdriverStepsReporting: true,
+          disableWebdriverScreenshotsReporting: true,
+      }],
 
-    
+      ['json', {
+        outputDir: './test/reports/json-results'
+        }],
+
+      ['junit', {
+        outputDir: './test/reports/junit-results',
+        outputFileFormat: function(options) {
+              return `results-${options.cid}.${options.capabilities}.xml`
+          }
+      }],
+
+    ],
     //
-    // Options to be passed to Mocha.
-    // See the full list at http://mochajs.org/
-    mochaOpts: {
-        // Babel setup
-        require: ['@babel/register'],
-        ui: 'bdd',
-        timeout: (24 * 60 * 60 * 1000)
-    },
     //
     // =====
     // Hooks
@@ -180,11 +171,17 @@ exports.config = {
      * Gets executed before test execution begins. At this point you can access to all global
      * variables like `browser`. It is the perfect place to define custom commands.
      * @param {Array.<Object>} capabilities list of capabilities details
-     * @param {Array.<String>} specs        List of spec file paths that are to be run
-     * @param {Object}         browser      instance of created browser/device session
+     * @param {Array.<String>} specs List of spec file paths that are to be run
      */
-    // before: function (capabilities, specs) {
-    // },
+    before: function (capabilities, specs) {
+      /**
+       * Setup the Chai assertion framework
+       */
+      // const chai    = require('chai');
+      // global.expect = chai.expect;
+      // global.assert = chai.assert;
+      // global.should = chai.should();
+    },
     /**
      * Runs before a WebdriverIO command gets executed.
      * @param {String} commandName hook command name
