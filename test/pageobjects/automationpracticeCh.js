@@ -35,7 +35,7 @@ class automationpracticeCh extends Page  {
    */
 
   open () {
-      super.open('http://www.automationpractice.com/index.php?id_product=6&controller=product')       //provide your additional URL if any. this will append to the baseUrl to form complete URL
+      super.open('index.php?id_product=6&controller=product')       //provide your additional URL if any. this will append to the baseUrl to form complete URL
       browser.pause(1000);
   }
   
@@ -81,9 +81,29 @@ class automationpracticeCh extends Page  {
 	return this.total_price.isExisting();
   }
   
-  isQvClose () {
-	browser.pause(1000);
-	return this.QvClose.isDisplayed();
+  isStepOneCurrent () {
+	 this.StepOneCurrent.waitForDisplayed(1000);
+	 return this.StepOneCurrent.isExisting();
+  }
+  
+  isStepTwoCurrent () {
+	 this.StepTwoCurrent.waitForDisplayed(1000);
+	 return this.StepTwoCurrent.isExisting();
+  }
+  
+  isStepThreeCurrent () {
+	 this.StepThreeCurrent.waitForDisplayed(1000);
+	 return this.StepThreeCurrent.isExisting();
+  }
+  
+  isStepFourCurrent () {
+	 this.StepFourCurrent.waitForDisplayed(1000);
+	 return this.StepFourCurrent.isExisting();
+  }
+  
+  isStepLastCurrent () {
+	 this.StepLastCurrent.waitForDisplayed(1000);
+	 return this.StepLastCurrent.isExisting();
   }
   
   inputEmailField () {
@@ -99,4 +119,4 @@ class automationpracticeCh extends Page  {
   }
 }
 
-module.exports = new automationpracticeCh();
+module.export = new automationpracticeCh();
