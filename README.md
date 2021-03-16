@@ -24,12 +24,12 @@ This project is tested on **Node v12.0.0** and above.  While earlier versions of
 
 To execute the entire test suite in local development, you can use any one of the options mentioned below
 
-Option 3: `npx wdio run ./wdio.conf.js`
-
 Option 1: `npm run test-local`. You can also run in SauceLabs and BrowserStack using `npm run test-sauce`, `npm run test-browserstack`.
 
 Option 2: `grunt webdriver:test-local`.  This executes all spec files in the [`./test/specs/*.js`] directory.
 The default option for Grunt run is `webdriver:test-local`. But you can use `webdriver:test-sauce` or `test-browserstack` based on your requirements.
+
+Option 3: `npx wdio run ./wdio.conf.js`
 
 To execute tests on `mobile device` use : `npm run test-mobile`.
 
