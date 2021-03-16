@@ -17,7 +17,7 @@ Option 1: `npm wdio run ./wdio.conf.js`.
 
 ### Config Files
 
-WebdriverIO uses configuration files to setup and execute tests in specific ways.  The configuration is fully customizable, and different functions can be invoked before, during and after each test or test suite.  Config files end with `*.conf.js`.  These can be called via the the cli
+WebdriverIO uses configuration files to setup and execute tests in specific ways.  The configuration is fully customizable, and different functions can be invoked before, during and after each test or test suite.  Config files are found in the `/test/config/` directory and all end with `*.conf.js`.  These can be called via the the cli
 
 ### Reporters
 
