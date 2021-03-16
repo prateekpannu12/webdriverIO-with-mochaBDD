@@ -1,5 +1,6 @@
-const automationpracticeCh = require('../pageobjects/automationpracticeCh');
-const automationpracticeSignUp = require('../pageobjects/automationpracticeSignUp');
+import automationpracticeCh			from '../pageobjects/automationpracticeCh';
+import automationpracticeSignUp		from '../pageobjects/automationpracticeSignUp';
+import assert       				from 'assert';
 
 /*
 	This is a BDD test using Mocha JavaScript framework
